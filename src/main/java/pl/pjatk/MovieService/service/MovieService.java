@@ -18,4 +18,8 @@ public class MovieService {
     public Movie findMovieById(Long id) {
         return new Movie(2L, "Die Hard", MovieCategory.THRILLER, 1988);
     }
+
+    public Movie createNewMovie(Movie movie){
+        return movie;
+    }
 }
