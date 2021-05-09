@@ -27,7 +27,7 @@ public class MovieController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Movie> findMovieByID(@PathVariable Long ID) {
-        return ResponseEntity.ok(movieService.findMovieByID(ID));
+    public ResponseEntity<Movie> findMovieById(@PathVariable Long id) {
+        return ResponseEntity.ok(movieService.findMovieById(id));
     }
 }
