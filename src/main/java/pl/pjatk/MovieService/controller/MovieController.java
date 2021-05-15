@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("/movies")
 public class MovieController {
 
-    private MovieService movieService;
+    private final MovieService movieService;
 
     public MovieController(MovieService movieService) {
         this.movieService = movieService;
@@ -31,5 +31,16 @@ public class MovieController {
     @PostMapping()
     public ResponseEntity<Movie> createMovie(@RequestBody Movie movie) {
         return ResponseEntity.ok(movieService.createNewMovie(movie));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Movie> updateMovie(@RequestBody Movie movie, @PathVariable Long id) {
+        return ResponseEntity.ok(movieService.updateMovie(movie, id));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteMovieById(@PathVariable Long id){
+        movieService.deleteMovie(id);
+        return ResponseEntity.ok().build();
     }
 }
