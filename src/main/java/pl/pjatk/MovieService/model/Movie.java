@@ -1,17 +1,29 @@
 package pl.pjatk.MovieService.model;
+import javax.persistence.*;
 
+@Entity
 public class Movie {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private MovieCategory movieCategory;
-    private int yearOfProduction;
 
-    public Movie(Long id, String name, MovieCategory movieCategory, int yearOfProduction) {
+    @Enumerated(EnumType.STRING)
+    private MovieCategory category;
+    private boolean isAvailable = false;
+
+    public Movie(Long id, String name, MovieCategory category) {
         this.id = id;
         this.name = name;
-        this.movieCategory = movieCategory;
-        this.yearOfProduction = yearOfProduction;
+        this.category = category;
+    }
+
+    public Movie(Long id, String name, MovieCategory category, boolean isAvailable) {
+        this.id = id;
+        this.name = name;
+        this.category = category;
+        this.isAvailable = isAvailable;
     }
 
     public Movie() {
@@ -33,30 +45,20 @@ public class Movie {
         this.name = name;
     }
 
-    public MovieCategory getMovieCategory() {
-        return movieCategory;
+    public MovieCategory getCategory() {
+        return category;
     }
 
-    public void setMovieCategory(MovieCategory movieCategory) {
-        this.movieCategory = movieCategory;
+    public void setCategory(MovieCategory movieCategory) {
+        this.category = movieCategory;
     }
 
-    public int getYearOfProduction() {
-        return yearOfProduction;
+    public boolean isAvailable() {
+        return isAvailable;
     }
 
-    public void setYearOfProduction(int yearOfProduction) {
-        this.yearOfProduction = yearOfProduction;
-    }
-
-    @Override
-    public String toString() {
-        return "Movie{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", movieCategory=" + movieCategory +
-                ", yearOfProduction=" + yearOfProduction +
-                '}';
+    public void setAvailable(boolean available) {
+        isAvailable = available;
     }
 }
 
